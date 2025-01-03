@@ -1,9 +1,9 @@
-//==============================
+//=======================================================================
 // File: TestDriver.cpp
 // Author: Eric Delgado
 // Date: 01/02/2025
 // Description: This is a program that simulates the graph data strcture.
-//==============================
+//=======================================================================
 
 #include <iostream>
 #include "Graph.h"
@@ -29,7 +29,7 @@ GraphNode* createNode(int key)
 int main()
 {
     // Create a graph object
-    Graph g;
+    Graph myGraph;
 
     // Create nodes with keys 0 to 4
     GraphNode* node0 = createNode(0);
@@ -39,13 +39,13 @@ int main()
     GraphNode* node4 = createNode(4);
 
     // Add nodes to the graph
-    cout << "Adding node 0: " << g.addVertex(node0, 0, 0) << endl;
-    cout << "Adding node 1: " << g.addVertex(node1, 1, 0) << endl;
-    cout << "Adding node 2: " << g.addVertex(node2, 2, 0) << endl;
-    cout << "Adding node 3: " << g.addVertex(node3, 3, 0) << endl;
-    cout << "Adding node 4: " << g.addVertex(node4, 4, 0) << endl;
+    cout << "Adding node 0: " << myGraph.addVertex(node0, 0, 0) << endl;
+    cout << "Adding node 1: " << myGraph.addVertex(node1, 1, 0) << endl;
+    cout << "Adding node 2: " << myGraph.addVertex(node2, 2, 0) << endl;
+    cout << "Adding node 3: " << myGraph.addVertex(node3, 3, 0) << endl;
+    cout << "Adding node 4: " << myGraph.addVertex(node4, 4, 0) << endl;
 
-    std::cout << "break" << std::endl;
+    cout << "break" << endl;
 
     // Set neighbors and edge weights according to the problem statement
     // Node 0 neighbors
@@ -96,9 +96,9 @@ int main()
     node4->edgeWeight[1] = 3;
 
     // Test the graph structure
-    cout << "Searching for node 3: " << (g.search(3) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 5: " << (g.search(5) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 0: " << (g.search(0) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 3: " << (myGraph.search(3) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 5: " << (myGraph.search(5) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 0: " << (myGraph.search(0) ? "Found" : "Not Found") << endl;
 
     return 0;
 }
