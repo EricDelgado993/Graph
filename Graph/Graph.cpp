@@ -2,8 +2,88 @@
 
 Graph::Graph()
 {
-    startPoint = nullptr;
+
+    for (int i = 0; i < 20; i++)
+    {
+        vertexList[i] = NULL;
+    }
 }
+
+bool Graph::addVertex(GraphNode* newNode)
+{
+    for (int i = 0; i < 20; i++)
+    {
+        if (vertexList[i] == NULL)
+        {
+            vertexList[i] = newNode;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Graph::searchForKey(int key)
+{
+    for (int i = 0; i < 20; i++)
+    {
+        if (vertexList[i] != NULL && vertexList[i]->key == key)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Graph::addEdge(int startKey, int endKey, int weight)
+{
+    if (searchForKey(startKey) == true && searchForKey(endKey) == true)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (getVertex(startKey)->neighbors[i] == NULL && getVertex(endKey)->neighbors[i] == NULL)
+            {
+                getVertex(startKey)->neighbors[i] = getVertex(endKey);
+                getVertex(endKey)->neighbors[i] = getVertex(startKey);
+
+                getVertex(startKey)->edgeWeight[i] = weight;
+                getVertex(endKey)->edgeWeight[i] = weight;
+
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+GraphNode* Graph::getVertex(int key)
+{
+    for (int i = 0; i < 20; i++)
+    {
+        if (vertexList[i]->key == key)
+        {
+            return vertexList[i];
+        }
+    }
+
+    return NULL;
+}
+
+bool Graph::isEmpty()
+{
+    int emptyVertices = 0;
+
+    while (vertexList[emptyVertices] == NULL)
+    {
+        emptyVertices++;
+    }
+
+    return emptyVertices == 20;
+}
+
+/*THROWAWAY CODE
 
 bool Graph::addVertex(GraphNode* newNode, int key, int weight)
 {
@@ -83,8 +163,4 @@ void Graph::startFrom(int key)
 {
 
 }
-
-bool Graph::isEmpty()
-{
-    return (startPoint == NULL);
-}
+*/

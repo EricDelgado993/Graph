@@ -9,95 +9,43 @@
 
 using namespace std;
 
-// Helper function to create new nodes easily
-GraphNode* createNode(int key)
-{
-    GraphNode* newNode = new GraphNode();
-    newNode->key = key;
-
-    // Initialize neighbors and edge weights as NULL and 0
-    for (int i = 0; i < 5; i++)
-    {
-        newNode->neighbors[i] = NULL;
-        newNode->edgeWeight[i] = 0;
-    }
-
-    return newNode;
-}
-
 int main()
 {
     // Create a graph object
     Graph myGraph;
 
     // Create nodes with keys 0 to 4
-    GraphNode* node0 = createNode(0);
-    GraphNode* node1 = createNode(1);
-    GraphNode* node2 = createNode(2);
-    GraphNode* node3 = createNode(3);
-    GraphNode* node4 = createNode(4);
+    GraphNode* node0 = new GraphNode();
+    node0->key = 0;
+    GraphNode* node1 = new GraphNode();
+    node1->key = 1;
+    GraphNode* node2 = new GraphNode();
+    node2->key = 2;
+    GraphNode* node3 = new GraphNode();
+    node3->key = 3;
+    GraphNode* node4 = new GraphNode();
+    node4->key = 4;
 
     // Add nodes to the graph
-    cout << "Adding node 0: " << myGraph.addVertex(node0, 0, 0) << endl;
-    cout << "Adding node 1: " << myGraph.addVertex(node1, 1, 0) << endl;
-    cout << "Adding node 2: " << myGraph.addVertex(node2, 2, 0) << endl;
-    cout << "Adding node 3: " << myGraph.addVertex(node3, 3, 0) << endl;
-    cout << "Adding node 4: " << myGraph.addVertex(node4, 4, 0) << endl;
+    myGraph.addVertex(node0);
+    myGraph.addVertex(node1);
+    myGraph.addVertex(node2);
+    myGraph.addVertex(node3);
+    myGraph.addVertex(node4);
 
-    cout << "break" << endl;
-
-    // Set neighbors and edge weights according to the problem statement
-    // Node 0 neighbors
-    node0->neighbors[0] = node4;
-    node0->edgeWeight[0] = 8;
-
-    node0->neighbors[1] = node1; 
-    node0->edgeWeight[1] = 3;
-
-    node0->neighbors[2] = node3;
-    node0->edgeWeight[2] = 7;
-
-    // Node 1 neighbors
-    node1->neighbors[0] = node0;
-    node1->edgeWeight[0] = 3;
-
-    node1->neighbors[1] = node2;
-    node1->edgeWeight[1] = 1;
-
-    node1->neighbors[2] = node3;
-    node1->edgeWeight[2] = 4;
-
-    // Node 2 neighbors
-    node2->neighbors[0] = node1;
-    node2->edgeWeight[0] = 1;
-
-    node2->neighbors[1] = node3;
-    node2->edgeWeight[1] = 2;
-
-    // Node 3 neighbors
-    node3->neighbors[0] = node1;
-    node3->edgeWeight[0] = 4;
-
-    node3->neighbors[1] = node2;
-    node3->edgeWeight[1] = 2;
-
-    node3->neighbors[2] = node0;
-    node3->edgeWeight[2] = 7;
-
-    node3->neighbors[3] = node4;
-    node3->edgeWeight[3] = 3;
-
-    // Node 4 neighbors
-    node4->neighbors[0] = node0;
-    node4->edgeWeight[0] = 8;
-
-    node4->neighbors[1] = node3;
-    node4->edgeWeight[1] = 3;
+    // Add edges between the nodes
+    myGraph.addEdge(0, 4, 8);  // Edge from node0 to node4 with weight 8
+    myGraph.addEdge(0, 1, 3);  // Edge from node0 to node1 with weight 3
+    myGraph.addEdge(0, 3, 7);  // Edge from node0 to node3 with weight 7
+    myGraph.addEdge(1, 2, 1);  // Edge from node1 to node2 with weight 1
+    myGraph.addEdge(1, 3, 4);  // Edge from node1 to node3 with weight 4
+    myGraph.addEdge(2, 3, 2);  // Edge from node2 to node3 with weight 2
+    myGraph.addEdge(3, 4, 3);  // Edge from node3 to node4 with weight 3
 
     // Test the graph structure
-    cout << "Searching for node 3: " << (myGraph.search(3) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 5: " << (myGraph.search(5) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 0: " << (myGraph.search(0) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 3: " << (myGraph.searchForKey(3) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 5: " << (myGraph.searchForKey(5) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 0: " << (myGraph.searchForKey(0) ? "Found" : "Not Found") << endl;
 
     return 0;
 }

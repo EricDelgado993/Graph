@@ -6,14 +6,15 @@ class Graph
 {
 public:
     Graph();
-    bool addVertex(GraphNode* newNode, int key, int weight);
-    void deleteVertex(int key);
-    void startFrom(int key);
-    bool search(int key);
+    bool addVertex(GraphNode* newNode);
+    bool searchForKey(int key);
+    bool addEdge(int startKey, int endKey, int weight);
+    GraphNode* getVertex(int key);
     bool isEmpty();
 
 private:
-    GraphNode* startPoint;
+    //GraphNode* startPoint;
+    GraphNode* vertexList[20];
 };
 
 struct GraphNode
