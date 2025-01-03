@@ -2,6 +2,7 @@
 // File: TestDriver.cpp
 // Author: Eric Delgado
 // Date: 01/02/2025
+// 
 // Description:
 // This program demonstrates the functionality of the Graph class by dynamically 
 // creating a graph structure. It uses the addVertex and addEdge methods to add 
@@ -49,9 +50,9 @@ int main()
     myGraph.addEdge(3, 4, 3);  // Edge from node3 to node4 with weight 3
 
     // Test the graph structure
-    cout << "Searching for node 3: " << (myGraph.searchForKey(3) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 5: " << (myGraph.searchForKey(5) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 0: " << (myGraph.searchForKey(0) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 3: " << (myGraph.search(3) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 5: " << (myGraph.search(5) ? "Found" : "Not Found") << endl;
+    cout << "Searching for node 0: " << (myGraph.search(0) ? "Found" : "Not Found") << endl;
 
     myGraph.setStartLocation(0);
 

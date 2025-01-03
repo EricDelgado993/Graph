@@ -9,7 +9,7 @@ public:
     Graph();
     void setStartLocation(int key);
     bool addVertex(GraphNode* newNode);
-    bool searchForKey(int key);
+    bool search(int key);
     GraphNode* BFS(int key);
     bool addEdge(int startKey, int endKey, int weight);
     GraphNode* getVertex(int key);
@@ -23,45 +23,18 @@ private:
 struct GraphNode
 {
     int key;
-    GraphNode* neighbors[5];  // max 5 neighbors
+    GraphNode* neighbors[5];
     int edgeWeight[5];
-    int neighborCount = 0;  // tracks the number of current neighbors
 
     GraphNode()
     {
-        // Initialize neighbors and edgeWeights to NULL and 0, respectively
+        key = -1;
+
         for (int i = 0; i < 5; i++)
         {
-            key = -1;
-            neighbors[i] = nullptr;
+            neighbors[i] = NULL;
             edgeWeight[i] = 0;
         }
     }
 
-    // Adds a neighbor if space is available
-    bool addNeighbor(GraphNode* neighbor, int weight)
-    {
-        if (neighborCount < 5)
-        {
-            // Check for duplicates before adding
-            for (int i = 0; i < neighborCount; i++)
-            {
-                if (neighbors[i] == neighbor)
-                {
-                    std::cout << "Error: Duplicate neighbor for node " << key << std::endl;
-                    return false;
-                }
-            }
-
-            neighbors[neighborCount] = neighbor;
-            edgeWeight[neighborCount] = weight;
-            neighborCount++;
-            return true;
-        }
-        else
-        {
-            std::cout << "Error: No space for more neighbors for node " << key << std::endl;
-            return false;
-        }
-    }
 };
