@@ -39,6 +39,16 @@ struct GraphNode
     {
         if (neighborCount < 5)
         {
+            // Check for duplicates before adding
+            for (int i = 0; i < neighborCount; i++)
+            {
+                if (neighbors[i] == neighbor)
+                {
+                    std::cout << "Error: Duplicate neighbor for node " << key << std::endl;
+                    return false;
+                }
+            }
+
             neighbors[neighborCount] = neighbor;
             edgeWeight[neighborCount] = weight;
             neighborCount++;
@@ -47,7 +57,7 @@ struct GraphNode
         else
         {
             std::cout << "Error: No space for more neighbors for node " << key << std::endl;
-            return false;  // No more space for neighbors
+            return false;
         }
     }
 };
