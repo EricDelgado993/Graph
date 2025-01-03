@@ -10,8 +10,7 @@ public:
     void deleteVertex(int key);
     void startFrom(int key);
     bool search(int key);
-    bool isInArray(int arr[], int target);
-    void isEmpty();
+    bool isEmpty();
 
 private:
     GraphNode* startPoint;
@@ -29,6 +28,7 @@ struct GraphNode
         // Initialize neighbors and edgeWeights to NULL and 0, respectively
         for (int i = 0; i < 5; i++)
         {
+            key = -1;
             neighbors[i] = nullptr;
             edgeWeight[i] = 0;
         }

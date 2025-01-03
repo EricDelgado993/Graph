@@ -73,3 +73,18 @@ bool Graph::search(int key)
 
     return false;
 }
+
+void Graph::deleteVertex(int key)
+{
+
+}
+
+void Graph::startFrom(int key)
+{
+
+}
+
+bool Graph::isEmpty()
+{
+    return (startPoint == NULL);
+}
