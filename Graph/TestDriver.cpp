@@ -1,8 +1,14 @@
-//=======================================================================
+//================================================================================
 // File: TestDriver.cpp
 // Author: Eric Delgado
 // Date: 01/02/2025
-//=======================================================================
+// Description:
+// This program demonstrates the functionality of the Graph class by dynamically 
+// creating a graph structure. It uses the addVertex and addEdge methods to add 
+// nodes and establish connections between them. The program tests the graph's 
+// ability to search for nodes and verifies its structure by simulating a simple 
+// graph with weighted edges.
+//================================================================================
 
 #include <iostream>
 #include "Graph.h"
@@ -46,6 +52,34 @@ int main()
     cout << "Searching for node 3: " << (myGraph.searchForKey(3) ? "Found" : "Not Found") << endl;
     cout << "Searching for node 5: " << (myGraph.searchForKey(5) ? "Found" : "Not Found") << endl;
     cout << "Searching for node 0: " << (myGraph.searchForKey(0) ? "Found" : "Not Found") << endl;
+
+    myGraph.setStartLocation(0);
+
+    // Test the BFS function
+    int keyToFind = 2;
+    GraphNode* foundNode = myGraph.BFS(keyToFind);
+
+    if (foundNode != nullptr)
+    {
+        cout << "Node with key " << keyToFind << " found!" << endl;
+    }
+    else
+    {
+        cout << "Node with key " << keyToFind << " not found." << endl;
+    }
+
+    // Test BFS for another node
+    keyToFind = 5;  // This node doesn't exist
+    foundNode = myGraph.BFS(keyToFind);
+
+    if (foundNode != nullptr)
+    {
+        cout << "Node with key " << keyToFind << " found!" << endl;
+    }
+    else
+    {
+        cout << "Node with key " << keyToFind << " not found." << endl;
+    }
 
     return 0;
 }

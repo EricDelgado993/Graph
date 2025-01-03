@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include "Queue.h"
 
@@ -6,14 +7,16 @@ class Graph
 {
 public:
     Graph();
+    void setStartLocation(int key);
     bool addVertex(GraphNode* newNode);
     bool searchForKey(int key);
+    GraphNode* BFS(int key);
     bool addEdge(int startKey, int endKey, int weight);
     GraphNode* getVertex(int key);
     bool isEmpty();
 
 private:
-    //GraphNode* startPoint;
+    GraphNode* startPoint;
     GraphNode* vertexList[20];
 };
 

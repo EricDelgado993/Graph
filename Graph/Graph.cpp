@@ -2,10 +2,19 @@
 
 Graph::Graph()
 {
+    startPoint = NULL;
 
     for (int i = 0; i < 20; i++)
     {
         vertexList[i] = NULL;
+    }
+}
+
+void Graph::setStartLocation(int key)
+{
+    if (searchForKey(key))
+    {
+        startPoint = getVertex(key);
     }
 }
 
@@ -34,6 +43,50 @@ bool Graph::searchForKey(int key)
     }
 
     return false;
+}
+
+GraphNode* Graph::BFS(int key)
+{
+    if (isEmpty())
+    {
+        return NULL;
+    }
+
+    Queue queue;        // Queue for the Breath First Search.
+    bool visited[20];   // Array to track visited nodes within the search.
+
+    for (int i = 0; i < 20; i++)
+    {
+        visited[i] = false;
+    }
+
+    // Start BFS from the startPoint
+    queue.enqueue(startPoint);
+    visited[startPoint->key] = true;
+
+    while (!queue.isEmpty())
+    {
+        GraphNode* current = queue.dequeue();
+
+        // Check if the current node contains the key
+        if (current->key == key)
+        {
+            return current;
+        }
+
+        // Add unvisited neighbors to the queue
+        for (int i = 0; i < 5; i++)
+        {
+            if (current->neighbors[i] != NULL && !visited[current->neighbors[i]->key])
+            {
+                queue.enqueue(current->neighbors[i]);
+                visited[current->neighbors[i]->key] = true;
+            }
+        }
+    }
+
+    // If the key was not found
+    return NULL;
 }
 
 bool Graph::addEdge(int startKey, int endKey, int weight)
