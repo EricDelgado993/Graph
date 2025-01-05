@@ -1,5 +1,5 @@
 ###### [↩️Return to Portfolio](https://github.com/EricDelgado993/Portfolio)
-# Graph and Queue Implementation in C++
+# Graph Implementation in C++
 
 ## **Overview**
 This project implements a Graph and an accompanying Queue data structure in C++. The graph supports up to 20 vertices, each of which can have up to 5 neighbors. A breadth-first search (BFS) traversal is implemented using the queue.
