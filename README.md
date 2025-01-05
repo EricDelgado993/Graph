@@ -6,7 +6,7 @@ This project implements a Graph and an accompanying Queue data structure in C++.
 
 ---
 
-## 📂 Files
+## 📂 **Files**
 -[Graph.h](https://github.com/EricDelgado993/Graph/blob/master/Graph/Graph.h)
 -[Graph.cpp](https://github.com/EricDelgado993/Graph/blob/master/Graph/Graph.cpp)
 -[Queue.h](https://github.com/EricDelgado993/Graph/blob/master/Graph/Queue.h)
