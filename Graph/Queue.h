@@ -1,9 +1,14 @@
+//=============================================================================
+// File: Queue.h
+// Author: Eric Delgado
+// Date: 01/02/2025
+//=============================================================================
+
 #pragma once
 
 #include <iostream>
 
-// Forward declaration of GraphNode so that it can be used in QueueNode
-struct GraphNode;
+struct GraphNode;     // Forward declaration of GraphNode so that it can be used in QueueNode
 
 struct QueueNode
 {

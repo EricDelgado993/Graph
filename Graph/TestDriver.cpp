@@ -1,27 +1,26 @@
-//================================================================================
+//=============================================================================
 // File: TestDriver.cpp
 // Author: Eric Delgado
 // Date: 01/02/2025
 // 
 // Description:
-// This program demonstrates the functionality of the Graph class by dynamically 
-// creating a graph structure. It uses the addVertex and addEdge methods to add 
-// nodes and establish connections between them. The program tests the graph's 
-// ability to search for nodes and verifies its structure by simulating a simple 
-// graph with weighted edges.
-//================================================================================
+// This program demonstrates the functionality of the Graph class by
+// dynamically creating a graph structure. It uses the addVertex and addEdge
+// methods to add nodes and establish connections between them. The program
+// tests the graph's ability to search for nodes and verifies its structure by
+// simulating a simple graph with weighted edges.
+//=============================================================================
 
-#include <iostream>
 #include "Graph.h"
+#include <iostream>
 
 using namespace std;
 
-int main()
+void testGraphFunctions()
 {
-    // Create a graph object
     Graph myGraph;
 
-    // Create nodes with keys 0 to 4
+    // Create nodes
     GraphNode* node0 = new GraphNode();
     node0->key = 0;
     GraphNode* node1 = new GraphNode();
@@ -32,55 +31,57 @@ int main()
     node3->key = 3;
     GraphNode* node4 = new GraphNode();
     node4->key = 4;
+    GraphNode* node5 = new GraphNode();
+    node5->key = 5;
 
     // Add nodes to the graph
-    myGraph.addVertex(node0);
-    myGraph.addVertex(node1);
-    myGraph.addVertex(node2);
-    myGraph.addVertex(node3);
-    myGraph.addVertex(node4);
+    cout << "Adding Vertex 0: " << (myGraph.addVertex(node0) ? "Pass" : "Fail") << endl;
+    cout << "Adding Vertex 1: " << (myGraph.addVertex(node1) ? "Pass" : "Fail") << endl;
+    cout << "Adding Vertex 2: " << (myGraph.addVertex(node2) ? "Pass" : "Fail") << endl;
+    cout << "Adding Vertex 3: " << (myGraph.addVertex(node3) ? "Pass" : "Fail") << endl;
+    cout << "Adding Vertex 4: " << (myGraph.addVertex(node4) ? "Pass" : "Fail") << endl;
+
+    // Attempt to add a vertex with an existing key
+    GraphNode* duplicateNode = new GraphNode();
+    duplicateNode->key = 0;
+    cout << "Adding Duplicate Vertex 0: " << (!myGraph.addVertex(duplicateNode) ? "Pass" : "Fail") << endl;
 
     // Add edges between the nodes
-    myGraph.addEdge(0, 4, 8);  // Edge from node0 to node4 with weight 8
-    myGraph.addEdge(0, 1, 3);  // Edge from node0 to node1 with weight 3
-    myGraph.addEdge(0, 3, 7);  // Edge from node0 to node3 with weight 7
-    myGraph.addEdge(1, 2, 1);  // Edge from node1 to node2 with weight 1
-    myGraph.addEdge(1, 3, 4);  // Edge from node1 to node3 with weight 4
-    myGraph.addEdge(2, 3, 2);  // Edge from node2 to node3 with weight 2
-    myGraph.addEdge(3, 4, 3);  // Edge from node3 to node4 with weight 3
+    cout << "Adding Edge (0, 4): " << (myGraph.addEdge(0, 4, 8) ? "Pass" : "Fail") << endl;
+    cout << "Adding Edge (0, 1): " << (myGraph.addEdge(0, 1, 3) ? "Pass" : "Fail") << endl;
+    cout << "Adding Edge (0, 3): " << (myGraph.addEdge(0, 3, 7) ? "Pass" : "Fail") << endl;
+    cout << "Adding Edge (1, 2): " << (myGraph.addEdge(1, 2, 1) ? "Pass" : "Fail") << endl;
+    cout << "Adding Edge (1, 3): " << (myGraph.addEdge(1, 3, 4) ? "Pass" : "Fail") << endl;
+    cout << "Adding Edge (2, 3): " << (myGraph.addEdge(2, 3, 2) ? "Pass" : "Fail") << endl;
+    cout << "Adding Edge (3, 4): " << (myGraph.addEdge(3, 4, 3) ? "Pass" : "Fail") << endl;
 
-    // Test the graph structure
-    cout << "Searching for node 3: " << (myGraph.search(3) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 5: " << (myGraph.search(5) ? "Found" : "Not Found") << endl;
-    cout << "Searching for node 0: " << (myGraph.search(0) ? "Found" : "Not Found") << endl;
+    // Test search()
+    cout << "Searching for Vertex 3: " << (myGraph.search(3) ? "Pass" : "Fail") << endl;
+    cout << "Searching for Vertex 5: " << (myGraph.search(5) ? "Pass" : "Fail") << endl;
 
+    // Test BFS
     myGraph.setStartLocation(0);
+    cout << "BFS to Find Vertex 2: " << (myGraph.BFS(2) == node2 ? "Pass" : "Fail") << endl;
+    cout << "BFS to Find Vertex 5: " << (myGraph.BFS(5) == node5 ? "Pass" : "Fail") << endl;
 
-    // Test the BFS function
-    int keyToFind = 2;
-    GraphNode* foundNode = myGraph.BFS(keyToFind);
+    // Test isEmpty() after adding vertices
+    cout << "Testing isEmpty() after adding vertices: " << (!myGraph.isEmpty() ? "Pass" : "Fail") << endl;
 
-    if (foundNode != nullptr)
-    {
-        cout << "Node with key " << keyToFind << " found!" << endl;
-    }
-    else
-    {
-        cout << "Node with key " << keyToFind << " not found." << endl;
-    }
+    // Test removing vertices
+    cout << "Removing Vertex 3: " << (myGraph.removeVertex(3) ? "Pass" : "Fail") << endl;
+    cout << "Removing Vertex 3 Again: " << (myGraph.removeVertex(3) ? "Pass" : "Fail") << endl;
+    cout << "Searching for Removed Vertex 3: " << (myGraph.search(3) ? "Pass" : "Fail") << endl;
 
-    // Test BFS for another node
-    keyToFind = 5;  // This node doesn't exist
-    foundNode = myGraph.BFS(keyToFind);
+    // Clean up allocated memory
+    delete node0;
+    delete node1;
+    delete node2;
+    delete node4;
+    delete duplicateNode;
+}
 
-    if (foundNode != nullptr)
-    {
-        cout << "Node with key " << keyToFind << " found!" << endl;
-    }
-    else
-    {
-        cout << "Node with key " << keyToFind << " not found." << endl;
-    }
-
+int main()
+{
+    testGraphFunctions();
     return 0;
 }

@@ -1,3 +1,9 @@
+//=============================================================================
+// File: Graph.h
+// Author: Eric Delgado
+// Date: 01/02/2025
+//=============================================================================
+
 #pragma once
 
 #include <iostream>
@@ -9,23 +15,25 @@ public:
     Graph();
     void setStartLocation(int key);
     bool addVertex(GraphNode* newNode);
+    bool removeVertex(int searchKey);
+    GraphNode* getVertex(int key);
     bool search(int key);
     GraphNode* BFS(int key);
     bool addEdge(int startKey, int endKey, int weight);
-    GraphNode* getVertex(int key);
     bool isEmpty();
 
 private:
-    GraphNode* startPoint;
-    GraphNode* vertexList[20];
+    GraphNode* startPoint;      // The vertex on the graph where search functions begin.
+    GraphNode* vertexList[20];  // A list of vertices on the graph. Maximum of 20 vertices.
 };
 
 struct GraphNode
 {
-    int key;
+    int key;                    
     GraphNode* neighbors[5];
     int edgeWeight[5];
 
+    // Default constructor
     GraphNode()
     {
         key = -1;
