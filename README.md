@@ -15,7 +15,7 @@ This project implements a Graph and an accompanying Queue data structure in C++.
 
 ---
 
-## Key Features
+## **Key Features**
 - **Dynamic Memory Management**: Efficiently manages memory for the queue using a linked list.
 - **Fixed-Size Graph**: Supports up to 20 vertices, each with up to 5 neighbors.
 - **BFS Traversal**: Implements breadth-first search for graph exploration.
@@ -23,22 +23,22 @@ This project implements a Graph and an accompanying Queue data structure in C++.
 
 ---
 
-## How It Works
+## **How It Works**
 
-### Graph Representation
+### **Graph Representation**
 - The graph is represented using an array of pointers to `GraphNode` objects (`vertexList[20]`).
 - Each `GraphNode` can have up to 5 neighbors and corresponding edge weights.
 
-### Queue
+### **Queue**
 - A linked list-based queue is used for BFS traversal.
 - Enqueues and dequeues vertices dynamically as the traversal progresses.
 
-### Breadth-First Search (BFS)
+### **Breadth-First Search (BFS)**
 - Starts from a designated `startPoint`.
 - Traverses the graph level by level, using the queue to manage exploration.
 - Marks visited vertices to avoid revisiting.
 
-## TestDriver Output
+## **TestDriver Output**
 <details>
   
 ```
